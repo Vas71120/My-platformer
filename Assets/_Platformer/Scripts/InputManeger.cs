@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
     public event Action onJump;
     public event Action onInteraction;
 
+
     private void Awake()
     {
         _controls = new Controls();
