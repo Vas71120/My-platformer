@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0ddb76283be8c488dd219d527c53d1, type: 3}
   m_Name: Star
   m_EditorClassIdentifier: 
-  title: 10
+  title: 1
   sprite: {fileID: 21300000, guid: 857b27bf305c140dab35e3de694fcfbc, type: 3}
-  maxAmount: 4
+  maxAmount: 10
   description: 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0ddb76283be8c488dd219d527c53d1, type: 3}
   m_Name: Big gem
   m_EditorClassIdentifier: 
-  title: 3
+  title: 10
   sprite: {fileID: 21300000, guid: c9e6b5e11d0ef456eb7f7ebd3e750671, type: 3}
-  maxAmount: 2
+  maxAmount: 100
   description: 
