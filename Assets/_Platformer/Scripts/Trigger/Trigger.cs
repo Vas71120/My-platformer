@@ -24,7 +24,7 @@ public abstract class Trigger : MonoBehaviour, IInteractive
 
     private bool _done;
 
-    public int Priorty => throw new NotImplementedException();
+    public int Priorty => priority;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

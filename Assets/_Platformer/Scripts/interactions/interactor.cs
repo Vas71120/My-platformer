@@ -16,12 +16,12 @@ public class Interactor : MonoBehaviour
         inputManager.onInteraction -= Interact;
     }
     private List<IInteractive> _interactiveObjects = new();
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEter2D(Collider2D collision)
     {
         var interactive = collision.GetComponent<IInteractive>();
         if (interactive != null) _interactiveObjects.Add(interactive);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         var interactive = collision.GetComponent<IInteractive>();
         if (interactive != null) _interactiveObjects.Remove(interactive);
