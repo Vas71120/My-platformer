@@ -7,7 +7,6 @@ using UnityEngine;
 public class Interactor : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
-    private List<IInteractive> _InteractiveObjects = new();
     public void OnEnable()
     {
         inputManager.onInteraction += Interact;
