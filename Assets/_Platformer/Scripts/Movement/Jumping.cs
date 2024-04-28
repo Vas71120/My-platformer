@@ -1,9 +1,8 @@
 using UnityEngine;
 
 
-public class Jumping : MonoBehaviour
+public class Jumping : MonoBehaviour, IInputable
 {
-    [SerializeField] private InputManager inputManager;
     [SerializeField, Range(0f, 10f)] private float jumpHeight = 3f;
     [SerializeField, Range(0, 5)] private int maxAirJumps;
     [SerializeField, Range(0f, 5f)]
@@ -34,14 +33,16 @@ public class Jumping : MonoBehaviour
     }
 
 
-    private void OnEnable()
+    public void SetupInput(InputManager inputManager)
     {
-        inputManager.onJump += Jump;
+        if (!inputManager) return;
+        inputManager.onJump +=Jump;
     }
 
 
-    private void OnDisable()
+    public void RemoveInput(InputManager inputManager)
     {
+        if (!inputManager) return;
         inputManager.onJump -= Jump;
     }
 
@@ -50,13 +51,6 @@ public class Jumping : MonoBehaviour
     {
         _desiredJump = true;
     }
-
-
-
-
-
-
-
     private void DoJump()
     {
         if (_onGround || _jumpPhase < maxAirJumps)

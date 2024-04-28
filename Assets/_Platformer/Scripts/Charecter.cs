@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -12,18 +15,50 @@ public class Character : MonoBehaviour, IDamagenable
     }
 
     [SerializeField] private Health health;
+    [SerializeField] private HealthDecorators decorators;
     [Space]
     [SerializeField] private CharacterAnimator animator;
-    [Space]
-    [SerializeField] private HealthDecorators decorators;
 
     private IHealth _health;
-
     private Rigidbody2D _rigidbody;
+
+    private IList<IInputable> _inputables;
+
+    private InputManager _inputManager;
+
+    public InputManager InputManager
+    {
+        get => _inputManager;
+        set
+        {
+            if (_inputManager)
+                foreach (var inputable in _inputables)
+                    inputable.RemoveInput(_inputManager);
+
+            _inputManager = value;
+
+            if (_inputManager)
+                foreach (var inputable in _inputables)
+                    inputable.SetupInput(_inputManager);
+        }
+    }
+
+    private void InitInputManager()
+    {
+        if (_inputManager) return;
+
+        var go = new GameObject("InputManger");
+        go.transform.SetParent(gameObject.transform);
+        InputManager = go.AddComponent<InputManager>();
+    }
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+
+        _inputables = GetComponents<IInputable>()
+                .Concat(GetComponentsInChildren<IInputable>())
+                .ToList();
     }
 
     private void Start()
@@ -38,17 +73,21 @@ public class Character : MonoBehaviour, IDamagenable
     {
         _health = decorator.Assign(_health) ?? _health;
     }
-
     private void OnEnable()
     {
         health.onDeath += Death;
         health.onDamage += Damage;
+
+        InitInputManager();
     }
 
     private void OnDisable()
     {
         health.onDeath -= Death;
         health.onDamage -= Damage;
+
+        Destroy(InputManager.gameObject);
+        InputManager = null;
     }
 
     private void Update()

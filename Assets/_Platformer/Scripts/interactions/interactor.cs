@@ -4,15 +4,16 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Interactor : MonoBehaviour
+public class Interactor : MonoBehaviour, IInputable
 {
-    [SerializeField] private InputManager inputManager;
-    public void OnEnable()
+    public void SetupInput(InputManager inputManager)
     {
+        if (!inputManager) return;
         inputManager.onInteraction += Interact;
     }
-    public void OnDisable()
+    public void RemoveInput(InputManager inputManager)
     {
+        if (!inputManager) return;
         inputManager.onInteraction -= Interact;
     }
     private List<IInteractive> _interactiveObjects = new();

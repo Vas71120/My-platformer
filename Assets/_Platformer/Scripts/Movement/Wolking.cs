@@ -1,9 +1,9 @@
 using UnityEngine;
 
 
-public class Walking : MonoBehaviour
+public class Walking : MonoBehaviour, IInputable
 {
-    [SerializeField] private InputManager inputManager;
+    
     [SerializeField, Range(0f, 100f)] private float maxSpeed = 4f;
     [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
     [SerializeField, Range(0f, 100f)] private float maxAirAcceler = 20f;
@@ -13,6 +13,7 @@ public class Walking : MonoBehaviour
     private Vector2 _direction;
     private Vector2 _desiredVelocity;
     private Vector2 _velocity;
+    private InputManager _inputManager;
     private bool _onGround;
     public void Move(Vector2 direction)
     {
@@ -22,9 +23,9 @@ public class Walking : MonoBehaviour
     }
     private void Update()
     {
-        if (inputManager)
+        if (_inputManager)
         {
-            Move(inputManager.Move); 
+            Move(_inputManager.Move); 
         }
         animator.SetVelocity(_velocity);
         animator.SetIsFalling(!_onGround);
@@ -38,5 +39,14 @@ public class Walking : MonoBehaviour
         _velocity.x = Mathf.MoveTowards(_velocity.x,
                       _desiredVelocity.x, speedChange);
         body.velocity = _velocity;
+    }
+    public void SetupInput(InputManager inputManager)
+    {
+        _inputManager = inputManager;
+    }
+
+    public void RemoveInput(InputManager inputManager)
+    {
+        _inputManager = null;
     }
 }

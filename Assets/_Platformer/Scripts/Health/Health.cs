@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
+[Serializable]
 public struct DamageInfo
 {
     public float damage;
