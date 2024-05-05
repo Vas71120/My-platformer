@@ -5,7 +5,7 @@ using UnityEngine;
 namespace MBT
 {
     [AddComponentMenu("")]
-    [MBTNode("Services/Update Position Service")]
+    [MBTNode("Services/Update Enemy Position")]
     public class UpdatePositionService : Service
     {
         public TransformReference sourceTransform;

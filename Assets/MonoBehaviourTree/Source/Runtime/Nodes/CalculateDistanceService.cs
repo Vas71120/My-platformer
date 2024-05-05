@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace MBT
 {
-    [AddComponentMenu("")]
-    [MBTNode("Services/Calculate Distance Service")]
-    public class CalculateDistanceService : Service
+
+        [AddComponentMenu("")]
+    [MBTNode("Services/Calculate Distance Service")]public class CalculateDistanceService : Service
     {
         [Space]
         public TransformReference transform1;

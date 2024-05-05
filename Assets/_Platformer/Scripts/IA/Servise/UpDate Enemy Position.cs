@@ -1,6 +1,8 @@
 using MBT;
 using UnityEngine;
 
+[AddComponentMenu("")]
+[MBTNode("Services/Update Enemy Position")]
 public class UpDateEnemyPosition : Service
 {
     [SerializeField] private GameObjectReference enemy = new(VarRefMode.DisableConstant);

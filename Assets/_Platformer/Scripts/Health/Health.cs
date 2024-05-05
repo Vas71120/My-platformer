@@ -45,7 +45,7 @@ public class Health : MonoBehaviour, IHealth
         if (!CanBeDamaged(damageInfo)) return 0f;
         var oldCurrent = Current;
         Current -= damageInfo.damage;
-        onDamage.Invoke(this, damageInfo);
+        onDamage?.Invoke(this, damageInfo);
         if (IsAlive) onDeath?.Invoke(this, damageInfo);
         return Math.Abs(oldCurrent - current);
     }

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using MBT;
 using UnityEngine;
 
-public class IsCloseCondition : Condition
+[AddComponentMenu("")]
+[MBTNode("Conditions/Is Close To")]public class IsCloseCondition : Condition
 {
     [SerializeField] private Abort abort;
     [SerializeField] private AICharacterReference self = new(VarRefMode.DisableConstant);
     [SerializeField] private Vector3Reference location = new(VarRefMode.DisableConstant);
     [SerializeField] private FloatReference threeshold = new(10f);
     [SerializeField] private bool invert;
+
     public override bool Check()
     {
         var sqrMagnitude = (self.Value.transform.position - location.Value).sqrMagnitude;

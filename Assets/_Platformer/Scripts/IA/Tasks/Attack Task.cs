@@ -2,10 +2,12 @@ using System.Collections;
 using MBT;
 using UnityEngine;
 
-public class AttackTask : Leaf
+[AddComponentMenu("")]
+    [MBTNode("Tasks/Attack")]public class AttackTask : Leaf
 {
     [SerializeField] private AICharacterReference self = new(VarRefMode.DisableConstant);
     [SerializeField] private FloatReference attackRate = new(1f);
+    
     private bool _isAttaking;
     public override NodeResult Execute()
     {
