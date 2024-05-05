@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4757f00c968ec614084e65753c1224b8, type: 3}
   m_Name: New Melee.MeleeConfig.asset.MeleeConfig
   m_EditorClassIdentifier: 
-  attacks: []
+  attacks:
+  - damage:
+      damage: 1
+    range: 1
+    preporation: 1
+    duration: 1
+    cooldown: 1
   comboCooldown: 0
