@@ -8,9 +8,9 @@ public class CharacterAnimator : MonoBehaviour
     [SerializeField] private string speedParameterName = "Speed";
     [SerializeField] private string VerticalSpeedParameterName = "VerticalSpeed";
     [SerializeField]
-    private string isFallingParameterName
-        = "IsFalling";
+    private string isFallingParameterName = "IsFalling";
     [SerializeField] private string hurtTriggerName = "Hurt";
+    [SerializeField] private string isAttakingParameterName = "IsAttaking";
 
 
     private void Awake()
@@ -30,8 +30,10 @@ public class CharacterAnimator : MonoBehaviour
     {
         _animator.SetBool(isFallingParameterName, isFalling);
     }
-
-
+    public void SetIsAttaking(bool isFalling)
+    {
+        _animator.SetBool(isAttakingParameterName, isFalling);
+    }
     public void Hurt()
     {
         _animator.SetTrigger(hurtTriggerName);
