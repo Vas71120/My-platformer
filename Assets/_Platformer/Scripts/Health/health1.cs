@@ -8,7 +8,8 @@ public interface IHealth
 
     public event Action<IHealth, DamageInfo> onDamage;
     public event Action<IHealth, DamageInfo> onDeath;
-
+    public event Action<IHealth, DamageInfo> onHeal;
     public bool CanBeDamaged(DamageInfo damageInfo);
+    public bool CanBeHealed(DamageInfo damageInfo);
     public float TakeDamage(DamageInfo damageInfo);
 }

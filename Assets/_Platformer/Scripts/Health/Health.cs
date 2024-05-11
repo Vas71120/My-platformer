@@ -28,6 +28,7 @@ public class Health : MonoBehaviour, IHealth
 
     public event Action<IHealth, DamageInfo> onDamage;
     public event Action<IHealth, DamageInfo> onDeath;
+    public event Action<IHealth, DamageInfo> onHeal;
 
     private void OnValidate()
     {
@@ -37,6 +38,10 @@ public class Health : MonoBehaviour, IHealth
     public bool CanBeDamaged(DamageInfo damageInfo)
     {
         return IsAlive;
+    }
+    public bool CanBeHealth(DamageInfo damageInfo)
+    {
+        return IsDamaged;
     }
 
     public float TakeDamage(DamageInfo damageInfo)
@@ -48,5 +53,9 @@ public class Health : MonoBehaviour, IHealth
         onDamage?.Invoke(this, damageInfo);
         if (IsAlive) onDeath?.Invoke(this, damageInfo);
         return Math.Abs(oldCurrent - current);
+    }
+    public interface IHealth
+    {
+        public float TakeHealth(DamageInfo damageInfo);
     }
 }
