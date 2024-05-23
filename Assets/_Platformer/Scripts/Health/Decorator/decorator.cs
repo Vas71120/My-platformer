@@ -62,4 +62,13 @@ public class FlatDamageDecorator : HealthDecorator
         damageInfo.damage = Mathf.Min(maxDamage, damageInfo.damage);
         return base.TakeDamage(damageInfo);
     }
-}
+    [Serializable]
+    public class FlatDamageMinDecorator : HealthDecorator
+    {
+        [SerializeField] private float minDamage = 5f;
+        public override float TakeDamage(DamageInfo damageInfo)
+        {
+            damageInfo.damage = Mathf.Min(minDamage, damageInfo.damage);
+            return base.TakeDamage(damageInfo);
+        }
+    }
